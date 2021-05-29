@@ -1,0 +1,172 @@
+<TickLabel@Label>:
+    font_size: "20sp"
+    bold: True
+    text_size: self.size
+    size_hint: None, None
+    halign: "center"
+    valign: "middle"
+    pos_hint: {'center_x': .5, 'center_y': .9}
+    
+FloatLayout:
+    size: 300, 300
+    padding: "10pt"
+    spacing: "5pt"
+    
+    canvas.before:
+        Color:
+            rgb: .6, .6, .6
+        Rectangle:
+            size: self.size
+    
+    TickLabel:
+        text: "01"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -30
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "02"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -60
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "03"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -90
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "04"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -120
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "05"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -150
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "06"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -180
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "07"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -210
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "08"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -240
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "09"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -270
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "10"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -300
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "11"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -330
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    TickLabel:
+        text: "12"
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -360
+                origin: root.center
+        canvas.after:
+            PopMatrix
+    
+    Widget:
+        size_hint: 1, 1
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -330
+                origin: root.center
+            Color:
+                rgb: 1, 0, 0
+            Rectangle:
+                size: 150, 10
+                pos: root.center
+        canvas.after:
+            PopMatrix
+    
+    Widget:
+        size_hint: 1, 1
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -230
+                origin: root.center
+            Color:
+                rgb: 1, 1, 0
+            Rectangle:
+                size: 150, 10
+                pos: root.center
+        canvas.after:
+            PopMatrix
+
+
+
