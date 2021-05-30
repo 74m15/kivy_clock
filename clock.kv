@@ -139,34 +139,54 @@ FloatLayout:
             PopMatrix
     
     Widget:
+        id: hour
+        angle: 0
         size_hint: 1, 1
         canvas.before:
             PushMatrix
             Rotate:
-                angle: -330
+                angle: self.angle
                 origin: root.center
             Color:
                 rgb: 1, 0, 0
             Rectangle:
-                size: 150, 10
+                size: 150, 8
                 pos: root.center
         canvas.after:
             PopMatrix
     
     Widget:
+        id: minute
+        angle: 0
         size_hint: 1, 1
         canvas.before:
             PushMatrix
             Rotate:
-                angle: -230
+                angle: self.angle
                 origin: root.center
             Color:
-                rgb: 1, 1, 0
+                rgb: 0, 1, 0
             Rectangle:
-                size: 150, 10
+                size: 180, 8
                 pos: root.center
         canvas.after:
             PopMatrix
-
+    
+    Widget:
+        id: second
+        angle: 0
+        size_hint: 1, 1
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: self.angle
+                origin: root.center
+            Color:
+                rgb: 0, 0, 1
+            Rectangle:
+                size: 200, 4
+                pos: root.center
+        canvas.after:
+            PopMatrix
 
 

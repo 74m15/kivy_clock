@@ -7,88 +7,29 @@ Created on Wed May 26 15:59:01 2021
 
 import kivy
 
-from time import time
+from time import localtime
 
 from kivy.app import App
 from kivy.clock import Clock
 
 class ClockApp(App):
     
-    def __init__(self):
-        super(ClockApp, self).__init__()
+    def build(self, *args, **kwargs):
+        super(ClockApp, self).build(*args, **kwargs)
         
-        self.rendering = False
+        Clock.schedule_interval(self.on_timer, 0.05)
     
-    def get_application_config(self):
-        """
-            Method overriden to skip file .ini read/write (dynamic configuration))
-        """
-        return None
-    
-    def build_config(self, config):
-        pass
-#        config.setdefaults("mandel", { 
-#                "max_iter" : 255, 
-#                "min_c_real" : -2.0,
-#                "min_c_imag" : -1.25,
-#                "z_size" : 2.50
-#            })
-#        config.setdefaults("render", { 
-#                "mandel_color" : "(0,0,0)", 
-#                "algorithm" : "smooth"
-#            })
+    def on_timer(self, *args):
+        time = localtime()
         
-    def build_settings(self, settings):
-        pass
-#        settings.add_json_panel("Mandel", self.config, data=\
-#            """[
-#                    {
-#                        "type" : "title",
-#                        "title" : "Mandel"
-#                    },
-#                    {
-#                        "type" : "numeric",
-#                        "title" : "Max number of iterations",
-#                        "section" : "mandel",
-#                        "key" : "max_iter"
-#                    },
-#                    {
-#                        "type" : "numeric",
-#                        "title" : "min(c) - real part",
-#                        "section" : "mandel",
-#                        "key" : "min_c_real"
-#                    },
-#                    {
-#                        "type" : "numeric",
-#                        "title" : "min(c) - imaginary part",
-#                        "section" : "mandel",
-#                        "key" : "min_c_imag"
-#                    },
-#                    {
-#                        "type" : "numeric",
-#                        "title" : "delta z - width of image",
-#                        "section" : "mandel",
-#                        "key" : "z_size"
-#                    },
-#                    {
-#                        "type" : "title",
-#                        "title" : "Render"
-#                    },
-#                    {
-#                        "type" : "string",
-#                        "title" : "RGB color of Mandelbrot set",
-#                        "section" : "render",
-#                        "key" : "mandel_color"
-#                    },
-#                    {
-#                        "type" : "options",
-#                        "title" : "Rendering Algorithm",
-#                        "section" : "render",
-#                        "key" : "algorithm",
-#                        "options" : [ "smooth", "log" ]
-#                    }
-#                ]""")
+        self.root.ids.hour.angle = \
+            -(time.tm_hour * 3600 + time.tm_min * 60 + time.tm_sec) / 86400 * 720 + 90
+        self.root.ids.minute.angle = \
+            -(time.tm_min * 60 + time.tm_sec) / 3600 * 360 + 90
+        self.root.ids.second.angle = \
+            -(time.tm_sec) / 60 * 360 + 90
         
-
+        return True
+            
 if __name__ == '__main__':
     ClockApp().run()
