@@ -1,16 +1,46 @@
 <TickLabel@Label>:
+    angle: 0
+    origin_x: 0
+    origin_y: 0
     font_size: "20sp"
     bold: True
     text_size: self.size
     size_hint: None, None
     halign: "center"
     valign: "middle"
-    pos_hint: {'center_x': .5, 'center_y': .9}
-    
-FloatLayout:
-    size: 300, 300
-    padding: "10pt"
-    spacing: "5pt"
+    pos_hint: {'center_x': 0.5, 'center_y': 0.95}
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: -self.angle
+            origin: self.origin_x, self.origin_y
+    canvas.after:
+        PopMatrix
+
+<Pointer@Widget>:
+    angle: 0
+    w_ratio: 0.25
+    color: 0, 0, 0, 1
+    thickness: 8
+    origin_x: 0
+    origin_y: 0
+    size_hint: 1, 1
+    canvas.before:
+        PushMatrix
+        Rotate:
+            angle: self.angle
+            origin: self.origin_x, self.origin_y
+        Color:
+            rgba: self.color
+        Rectangle:
+            size: min(self.width, self.height) * self.w_ratio, self.thickness
+            pos: self.origin_x - 4, self.origin_y - self.thickness / 2
+    canvas.after:
+        PopMatrix
+
+GridLayout:
+    cols: 1
+    rows: 1
     
     canvas.before:
         Color:
@@ -18,175 +48,102 @@ FloatLayout:
         Rectangle:
             size: self.size
     
-    TickLabel:
-        text: "01"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -30
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "02"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -60
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "03"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -90
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "04"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -120
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "05"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -150
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "06"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -180
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "07"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -210
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "08"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -240
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "09"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -270
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "10"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -300
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "11"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -330
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    TickLabel:
-        text: "12"
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: -360
-                origin: root.center
-        canvas.after:
-            PopMatrix
-    
-    Widget:
-        id: hour
-        angle: 0
+    FloatLayout:
         size_hint: 1, 1
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: self.angle
-                origin: root.center
-            Color:
-                rgb: 1, 0, 0
-            Rectangle:
-                size: 150, 8
-                pos: root.center
-        canvas.after:
-            PopMatrix
+        
+        TickLabel:
+            text: "01"
+            angle: 30
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "02"
+            angle: 60
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "03"
+            angle: 90
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "04"
+            angle: 120
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "05"
+            angle: 150
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "06"
+            angle: 180
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "07"
+            angle: 210
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "08"
+            angle: 240
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "09"
+            angle: 270
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "10"
+            angle: 300
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "11"
+            angle: 330
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        TickLabel:
+            text: "12"
+            angle: 360
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        Pointer:
+            id: hour
+            w_ratio: 0.25
+            color: 1, 0, 0, 1
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        Pointer:
+            id: minute
+            w_ratio: 0.3
+            thickness: 6
+            color: 0, 1, 0, 1
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
+        Pointer:
+            id: second
+            w_ratio: 0.35
+            thickness: 4
+            color: 0, 0, 1, 1
+            origin_x: root.center_x
+            origin_y: root.center_y
+        
     
-    Widget:
-        id: minute
-        angle: 0
-        size_hint: 1, 1
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: self.angle
-                origin: root.center
-            Color:
-                rgb: 0, 1, 0
-            Rectangle:
-                size: 180, 8
-                pos: root.center
-        canvas.after:
-            PopMatrix
-    
-    Widget:
-        id: second
-        angle: 0
-        size_hint: 1, 1
-        canvas.before:
-            PushMatrix
-            Rotate:
-                angle: self.angle
-                origin: root.center
-            Color:
-                rgb: 0, 0, 1
-            Rectangle:
-                size: 200, 4
-                pos: root.center
-        canvas.after:
-            PopMatrix
-
-
