@@ -1,21 +1,12 @@
+#:import CircularLayout circularlayout
+
 <TickLabel@Label>:
-    angle: 0
-    origin_x: 0
-    origin_y: 0
     font_size: "20sp"
     bold: True
     text_size: self.size
-    size_hint: None, None
+    size_hint: 1, 1
     halign: "center"
     valign: "middle"
-    pos_hint: {'center_x': 0.5, 'center_y': 0.95}
-    canvas.before:
-        PushMatrix
-        Rotate:
-            angle: -self.angle
-            origin: self.origin_x, self.origin_y
-    canvas.after:
-        PopMatrix
 
 <Pointer@Widget>:
     angle: 0
@@ -38,112 +29,133 @@
     canvas.after:
         PopMatrix
 
-GridLayout:
-    cols: 1
-    rows: 1
-    
-    canvas.before:
-        Color:
-            rgb: .6, .6, .6
-        Rectangle:
-            size: self.size
-    
+<AnalogClock@Widget>:
     FloatLayout:
         size_hint: 1, 1
+        pos_hint: { "x": 0, "y": 0 }
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                size: self.size
         
-        TickLabel:
-            text: "01"
-            angle: 30
-            origin_x: root.center_x
-            origin_y: root.center_y
+        CircularLayout:
+            id: clock
+            direction: "cw"
+            size_hint: 1, 1
+            start_angle: -75
+                
+            TickLabel:
+                text: "01"
+            
+            TickLabel:
+                text: "02"
+            
+            TickLabel:
+                text: "03"
+            
+            TickLabel:
+                text: "04"
+            
+            TickLabel:
+                text: "05"
+            
+            TickLabel:
+                text: "06"
+            
+            TickLabel:
+                text: "07"
+            
+            TickLabel:
+                text: "08"
+            
+            TickLabel:
+                text: "09"
+            
+            TickLabel:
+                text: "10"
+            
+            TickLabel:
+                text: "11"
+            
+            TickLabel:
+                text: "12"
+            
+GridLayout:
+    cols: 1
+    
+    RelativeLayout:
+        id: clock
+        size_hint: 1, 1
+        canvas.before:
+            Color:
+                rgb: .6, .6, .6
+            Rectangle:
+                pos: self.to_window(0, 0)
+                size: self.size
         
-        TickLabel:
-            text: "02"
-            angle: 60
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
-        TickLabel:
-            text: "03"
-            angle: 90
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
-        TickLabel:
-            text: "04"
-            angle: 120
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
-        TickLabel:
-            text: "05"
-            angle: 150
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
-        TickLabel:
-            text: "06"
-            angle: 180
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
-        TickLabel:
-            text: "07"
-            angle: 210
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
-        TickLabel:
-            text: "08"
-            angle: 240
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
-        TickLabel:
-            text: "09"
-            angle: 270
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
-        TickLabel:
-            text: "10"
-            angle: 300
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
-        TickLabel:
-            text: "11"
-            angle: 330
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
-        TickLabel:
-            text: "12"
-            angle: 360
-            origin_x: root.center_x
-            origin_y: root.center_y
+        CircularLayout:
+            direction: "cw"
+            size_hint: 1, 1
+            start_angle: -75
+                
+            TickLabel:
+                text: "01"
+            
+            TickLabel:
+                text: "02"
+            
+            TickLabel:
+                text: "03"
+            
+            TickLabel:
+                text: "04"
+            
+            TickLabel:
+                text: "05"
+            
+            TickLabel:
+                text: "06"
+            
+            TickLabel:
+                text: "07"
+            
+            TickLabel:
+                text: "08"
+            
+            TickLabel:
+                text: "09"
+            
+            TickLabel:
+                text: "10"
+            
+            TickLabel:
+                text: "11"
+            
+            TickLabel:
+                text: "12"
         
         Pointer:
             id: hour
             w_ratio: 0.25
+            thickness: 2 / self.w_ratio
             color: 1, 0, 0, 1
-            origin_x: root.center_x
-            origin_y: root.center_y
+            origin_x: self.parent.width / 2
+            origin_y: self.parent.height / 2
         
         Pointer:
             id: minute
             w_ratio: 0.3
-            thickness: 6
+            thickness: 2 / self.w_ratio
             color: 0, 1, 0, 1
-            origin_x: root.center_x
-            origin_y: root.center_y
+            origin_x: self.parent.width / 2
+            origin_y: self.parent.height / 2
         
         Pointer:
             id: second
             w_ratio: 0.35
-            thickness: 4
+            thickness: 2 / self.w_ratio
             color: 0, 0, 1, 1
-            origin_x: root.center_x
-            origin_y: root.center_y
-        
+            origin_x: self.parent.width / 2
+            origin_y: self.parent.height / 2
     

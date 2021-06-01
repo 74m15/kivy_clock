@@ -19,6 +19,10 @@ class ClockApp(App):
         
         Clock.schedule_interval(self.on_timer, 0.05)
     
+    def _traverse(self):
+        for w in self.root.walk():
+            print(type(w), w.x, w.y, w.width, w.height)
+    
     def on_timer(self, *args):
         time = localtime()
         
@@ -29,6 +33,8 @@ class ClockApp(App):
         self.root.ids.second.angle = \
             -(time.tm_sec) / 60 * 360 + 90
         
+#        self._traverse()
+#        return False
         return True
             
 if __name__ == '__main__':
